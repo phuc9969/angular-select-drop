@@ -1,0 +1,24 @@
+<label>Drag and Drop (both horizontal and vertical)</label>
+
+<ng-select
+  [(ngModel)]="selectedLocations"
+  [items]="selectedLocations"
+  [multiple]="true"
+  bindLabel="name"
+  placeholder="Select Locations"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+  [cdkDropListData]="selectedLocations"
+>
+  <ng-template ng-label-tmp let-item="item" let-clear="clear">
+    <div
+      cdkDrag
+      class="drag-item"
+      (cdkDragMoved)="onDragMoved($event)"
+      style="cursor: move; display: inline-block; margin-right: 10px;"
+    >
+      <span class="ng-value-label">{{ item.name }}</span>
+      <span class="ng-value-icon right" (click)="clear(item)">×</span>
+    </div>
+  </ng-template>
+</ng-select>
